@@ -1,0 +1,52 @@
+type: http_request
+model: http_request
+id: rq_ZwbnYqZ2Xr
+createdAt: 2026-10-18T23:17:41.437837900
+updatedAt: 2026-10-18T23:18:16.966209
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_ywhguHd6vm
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      // "title": "Hello world",
+      "body": "Good morning everyone",
+      "status": "completed",
+      // "email": "faisal@gmail.com",
+      // "auth": true
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: x4PI8stBA5
+method: PATCH
+name: Update tasks
+sortPriority: -1792350164609.993
+url: ${[ baseUrl ]}/tasks
+urlParameters:
+- enabled: true
+  name: ''
+  value: ''
+  id: veM4aRivPs
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto

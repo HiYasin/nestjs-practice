@@ -1,0 +1,46 @@
+type: http_request
+model: http_request
+id: rq_7RpLwYHvx6
+createdAt: 2026-10-18T19:19:37.319194700
+updatedAt: 2026-10-18T19:19:50.305869
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_5vqr2T6yGo
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "firstName": "Faisal",
+      "lastName": "Yasin",
+      "email": "faisal@example.com"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: xgGS3csZhd
+method: POST
+name: Users Profile
+sortPriority: -1792350164609.998
+url: ${[ baseUrl ]}/users/profile
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
