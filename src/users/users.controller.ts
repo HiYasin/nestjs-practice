@@ -2,6 +2,7 @@ import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Patch, Po
 import { UsersService } from './providers/users.service.js';
 import { GetUsersParamDto } from './dtos/get-user-param.dto.js';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateUserDto } from './dtos/create-user.dto.js';
 
 @Controller('users')
 @ApiTags('Users Endpoint') // If not provided, the default tag will be the controller name
@@ -47,10 +48,22 @@ export class UsersController {
     }
   }
 
-
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully retrieved user by ID',
+    schema: {
+      type: 'object',
+      properties: {
+        id: { type: 'number', example: 123 },
+        firstName: { type: 'string', example: 'John' },
+        lastName: { type: 'string', example: 'Doe' },
+        email: { type: 'string', example: 'john.doe@example.com' },
+      },
+    }
+  })
   @Post()
-  public createUser(@Body() request: any) {
-    console.log(request);
+  public createUser(@Body() createUserDto: CreateUserDto) {
+    console.log(createUserDto);
     return 'User created successfully.'
   }
 

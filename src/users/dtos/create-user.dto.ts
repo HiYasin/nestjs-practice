@@ -1,0 +1,103 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+  ValidateNested,
+} from 'class-validator';
+
+enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+
+
+export class CreateUserMetaDto {
+  @IsString()
+  @IsNotEmpty()
+  key: string;
+
+  @IsNotEmpty()
+  value: any;
+}
+
+
+export class CreateUserDto {
+  @ApiProperty({
+    description: 'User first name',
+    example: 'John',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(3)
+  @MaxLength(96)
+  firstName: string;
+
+
+  @ApiPropertyOptional({
+    description: 'User last name',
+    example: 'Doe',
+  })
+  @IsString()
+  @IsOptional()
+  @MinLength(3)
+  @MaxLength(96)
+  lastName?: string;
+
+
+  @ApiProperty({
+    description: 'User email',
+    example: 'john.doe@example.com',
+  })
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+
+  @ApiProperty({
+    description: 'User password',
+    example: 'Password123!',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(8)
+  @Matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
+    message:
+      'Minimum eight characters, at least one letter, one number and one special character',
+  })
+  password: string;
+
+
+  @ApiProperty({
+    description: 'User role',
+    example: 'user',
+  })
+  @IsEnum(Role)
+  @IsOptional()
+  role?: Role = Role.USER;
+
+
+  @ApiPropertyOptional({
+    description: 'Additional metadata for the user',
+    type: [CreateUserMetaDto],
+    required: false,
+    items: {
+      properties: {
+        key: { type: 'string', example: 'age' },
+        value: { type: 'any', example: 30 },
+      },
+    }
+  })
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(()=> CreateUserMetaDto)
+  meta?: CreateUserMetaDto[];
+}
