@@ -3,6 +3,7 @@ import { UsersService } from './providers/users.service.js';
 import { GetUsersParamDto } from './dtos/get-user-param.dto.js';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dtos/create-user.dto.js';
+import { PatchUserDto } from './dtos/patch-user.dto.js';
 
 @Controller('users')
 @ApiTags('Users Endpoint') // If not provided, the default tag will be the controller name
@@ -67,9 +68,35 @@ export class UsersController {
     return 'User created successfully.'
   }
 
+
+  @ApiOperation({
+    summary: 'Update user information',
+    description: 'This endpoint allows you to update user information.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully updated user information',
+    schema: {
+      type: 'object',
+      properties: {
+        message: { type: 'string', example: 'User updated successfully.' },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request - Invalid input data',
+    schema: {
+      type: 'object',
+      properties: {
+        error: { type: 'string', example: 'Bad Request' },
+        message: { type: 'string', example: 'Invalid input data' },
+      },
+    },
+  })
   @Patch()
-  public patchUser(@Body() request: any) {
-    console.log(request);
+  public patchUser(@Body() patchUserDto: PatchUserDto) {
+    console.log(patchUserDto);
     return 'User updated successfully.'
   }
 }
