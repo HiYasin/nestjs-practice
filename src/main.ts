@@ -13,9 +13,17 @@ async function bootstrap() {
     })
   )
 
-  
+
   // Swagger configuration
-  const config = new DocumentBuilder().setVersion('1.0').build();
+  const config = new DocumentBuilder()
+  .setTitle('NestJS Practice API')
+  .setDescription('This is a practice API built with NestJS.')
+  .setTermsOfService('https://example.com/terms')
+  .setLicense('MIT', 'https://opensource.org/licenses/MIT')
+  .setVersion('1.0')
+  .addServer('http://localhost:3000', 'Local server')
+  .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
