@@ -1,5 +1,6 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { UsersService } from '../../users/providers/users.service.js';
+import type { WrapperType } from '../../common/types/wrapper.type.js';
 
 @Injectable()
 export class AuthService {
@@ -7,6 +8,7 @@ export class AuthService {
     // Injecting UsersService to access user-related operations within AuthService
     constructor(
         @Inject(forwardRef(() => UsersService))
-        private readonly usersService: UsersService
+        // private readonly usersService: UsersService
+        private readonly usersService: WrapperType<UsersService>
     ) { }
 }
