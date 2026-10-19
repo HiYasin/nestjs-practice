@@ -1,13 +1,26 @@
-import { Body, Controller, Get, Headers, Ip, Param, Patch, Post, Query, Req } from '@nestjs/common';
-import { type Request } from 'express';
+import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
+import { UsersService } from './providers/users.service.js';
+import { GetUsersParamDto } from './dtos/get-user-param.dto.js';
 
 @Controller('users')
 export class UsersController {
 
+  // Injected UsersService instance to handle user-related operations
+  constructor(private readonly usersService: UsersService) { }
+
   @Get()
-  public getUsers(@Query() query: any) {
-    console.log(query);
-    return 'Users retrive successfully.'
+  public getUsers(
+    @Param() getUserParamDto: GetUsersParamDto,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+  ) {
+    return {
+      data: this.usersService.findAll(getUserParamDto, page, limit),
+      meta: {
+        page,
+        limit
+      }
+    }
   }
 
 
