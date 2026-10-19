@@ -19,6 +19,8 @@ export class UsersService {
         page: number,
         limit: number
     ) {
+        const isAuth = this.authService.isAuth(); // Example usage of AuthService to check authentication status
+        console.log('Is Authenticated:', isAuth);
         return [
             {
                 firstName: 'John',

@@ -11,4 +11,15 @@ export class AuthService {
         // private readonly usersService: UsersService
         private readonly usersService: WrapperType<UsersService>
     ) { }
+
+    
+    public login(email: string, password: string): string {
+        const user = this.usersService.findOne(123); // Example usage of UsersService to find a user by ID
+        console.log('User found:', user);
+        return 'Session_token';
+    }
+
+    public isAuth(): boolean {
+        return true;
+    }
 }

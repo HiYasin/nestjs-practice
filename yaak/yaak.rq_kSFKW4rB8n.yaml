@@ -1,0 +1,45 @@
+type: http_request
+model: http_request
+id: rq_kSFKW4rB8n
+createdAt: 2026-10-19T14:18:55.030720
+updatedAt: 2026-10-19T14:19:24.130052
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_pCVRKW9ERA
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "email": "hello",
+      "1password": "f;lajdf;dj"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: 4XcEX6hRad
+method: POST
+name: ''
+sortPriority: -1792419535028.0
+url: ${[ baseUrl ]}/auth/login
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
