@@ -5,9 +5,13 @@ import { UsersModule } from './users/users.module.js';
 import { PostsModule } from './posts/posts.module.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity.js';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, // makes the ConfigModule available globally, so you don't have to import it in every module
+    }),
     UsersModule,
     PostsModule,
     TypeOrmModule.forRootAsync({
