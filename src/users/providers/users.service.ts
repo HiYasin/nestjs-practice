@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user.entity.js';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto.js';
+import { ConfigService } from '@nestjs/config';
 
 
 @Injectable()
@@ -10,9 +11,15 @@ export class UsersService {
 
     constructor(
         @InjectRepository(User)
-        private readonly userRepository: Repository<User>
+        private readonly userRepository: Repository<User>,
+        private readonly configService: ConfigService,
     ) { }
 
+    public async findAll(): Promise<User[]> {
+        const nodeEnv = this.configService.get<string>('NODE_ENV');
+        console.log('NODE_ENV:', nodeEnv);
+        return await this.userRepository.find();
+    }
     public async create(createUserDto: CreateUserDto){
 
         // Check if user already exists
