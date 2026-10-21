@@ -21,7 +21,9 @@
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
     "doc:dev": "npx @compodoc/compodoc -p tsconfig.json -s --port 3001 --watch -d ./documentation",
-    "doc": "npx @compodoc/compodoc -p tsconfig.json -s -d ./documentation"
+    "doc": "npx @compodoc/compodoc -p tsconfig.json -s -d ./documentation",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
   },
   "dependencies": {
     "@compodoc/compodoc": "^2.0.0",
