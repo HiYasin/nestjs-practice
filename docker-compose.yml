@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password
+      POSTGRES_DB: nestjs-blog
+    volumes:
+      - db_data:/var/lib/postgresql
+
+  pg_admin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: f.yaasinn@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: dbadmin
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+volumes:
+  db_data:
+  pgadmin_data:
