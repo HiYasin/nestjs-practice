@@ -7,10 +7,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity.js';
 import { ConfigModule } from '@nestjs/config';
 
+const ENV = process.env.NODE_ENV ?? 'development';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // makes the ConfigModule available globally, so you don't have to import it in every module
+      // NODE_ENV must be set by the process (see the start:* scripts). The first existing file wins,
+      // so environment-specific values override the shared defaults in .env.
+      envFilePath: [`.env.${ENV}`, '.env'],
     }),
     UsersModule,
     PostsModule,
