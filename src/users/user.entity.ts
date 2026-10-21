@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Role } from "./dtos/create-user.dto.js";
 
 @Entity()
 export class User {
@@ -33,8 +34,10 @@ export class User {
     password: string;
 
     @Column({
-        type: 'varchar',
-        nullable: false
+        type: 'enum',
+        enum: [Role],
+        nullable: false,
+        default: Role.USER
     })
-    role: string;
+    role: Role;
 }
