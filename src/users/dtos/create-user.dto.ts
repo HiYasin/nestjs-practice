@@ -1,7 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
 import {
-  IsArray,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -10,22 +8,11 @@ import {
   Matches,
   MaxLength,
   MinLength,
-  ValidateNested,
 } from 'class-validator';
 
 enum Role {
   USER = 'user',
   ADMIN = 'admin',
-}
-
-
-export class CreateUserMetaDto {
-  @IsString()
-  @IsNotEmpty()
-  key: string;
-
-  @IsNotEmpty()
-  value: any;
 }
 
 
@@ -82,22 +69,4 @@ export class CreateUserDto {
   @IsEnum(Role)
   @IsOptional()
   role?: Role = Role.USER;
-
-
-  @ApiPropertyOptional({
-    description: 'Additional metadata for the user',
-    type: [CreateUserMetaDto],
-    required: false,
-    items: {
-      properties: {
-        key: { type: 'string', example: 'age' },
-        value: { type: 'any', example: 30 },
-      },
-    }
-  })
-  @IsOptional()
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(()=> CreateUserMetaDto)
-  meta?: CreateUserMetaDto[];
 }

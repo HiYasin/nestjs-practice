@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_rTmJxfiNis
 createdAt: 2026-10-18T19:05:44.571151600
-updatedAt: 2026-10-18T19:13:32.414681500
+updatedAt: 2026-10-21T11:25:08.202717500
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_5vqr2T6yGo
 authentication: {}
@@ -12,7 +12,8 @@ body:
     {
       "firstName": "Faisal",
       "lastName": "Yasin",
-      "email": "faisal@example.com"
+      "email": "faisal@example.com",
+      "password": "Password123!",
     }
 bodyType: application/json
 description: ''
