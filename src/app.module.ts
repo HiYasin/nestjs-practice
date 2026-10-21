@@ -5,7 +5,8 @@ import { UsersModule } from './users/users.module.js';
 import { PostsModule } from './posts/posts.module.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity.js';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { appConfig, DatabaseConfig } from './config/app.config.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -16,27 +17,31 @@ const ENV = process.env.NODE_ENV ?? 'development';
       // NODE_ENV must be set by the process (see the start:* scripts). The first existing file wins,
       // so environment-specific values override the shared defaults in .env.
       envFilePath: [`.env.${ENV}`, '.env'],
+      load: [appConfig],
     }),
     UsersModule,
     PostsModule,
     TypeOrmModule.forRootAsync({
-      imports: [],
-      inject: [],
-      useFactory: () => ({
-        type: 'postgres',
-        // Registers every entity passed to TypeOrmModule.forFeature() in feature modules
-        // autoLoadEntities: true,
-        entities: [User],
-        synchronize: true,
-        port: 5432,
-        username: 'postgres',
-        password: 'Password',
-        host: 'localhost',
-        database: 'nestjs-blog'
-      })
-    })
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        const database = configService.getOrThrow<DatabaseConfig>('database');
+
+        return {
+          type: 'postgres',
+          host: database.host,
+          port: database.port,
+          username: database.username,
+          password: database.password,
+          database: database.name,
+          entities: [User],
+          synchronize: database.synchronize,
+          autoLoadEntities: database.autoLoadEntities,
+        };
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

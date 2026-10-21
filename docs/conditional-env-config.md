@@ -147,6 +147,8 @@ export class UsersService {
 ```
 
 Values are always strings. Use `getOrThrow()` when a variable is required.
+Custom config objects (like `appConfig` in `src/config/app.config.ts`) are read
+the same way: `configService.getOrThrow<DatabaseConfig>('database')`.
 
 ## 7. Run and verify
 
@@ -183,5 +185,7 @@ In Docker/CI, `NODE_ENV` is usually set by the platform; it wins over the files.
 
 - Keep `.env` and `.env.development` in `.gitignore`; commit only `.env.example`.
 - Real production secrets belong in the hosting platform, not the repo.
-- `TypeOrmModule` in this project still hardcodes DB credentials; use
-  `ConfigService` in `forRootAsync` if you want them to come from env files.
+- Custom config lives in `src/config/app.config.ts`, is registered with
+  `load: [appConfig]`, and is read in `TypeOrmModule.forRootAsync` through
+  `ConfigService.getOrThrow('database')`. See
+  [custom-config.md](./custom-config.md) for the full pattern.
