@@ -90,6 +90,7 @@ environment-specific file wins over `.env`.
 ```ts
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { envSchema } from './config/env.validation.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -99,6 +100,7 @@ const ENV = process.env.NODE_ENV ?? 'development';
       isGlobal: true,
       // First existing file wins. `.env` is the fallback.
       envFilePath: [`.env.${ENV}`, '.env'],
+      validationSchema: envSchema,
     }),
   ],
 })
@@ -106,6 +108,8 @@ export class AppModule {}
 ```
 
 - Existing `process.env` values beat both files.
+- The merged result is validated with Zod before the app starts. See
+  [env-validation-zod.md](./env-validation-zod.md).
 
 ## 5. Set `NODE_ENV` in the scripts
 

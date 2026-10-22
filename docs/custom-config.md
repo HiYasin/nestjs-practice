@@ -70,6 +70,7 @@ Why it is written this way:
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { appConfig } from './config/app.config.js';
+import { envSchema } from './config/env.validation.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -78,6 +79,7 @@ const ENV = process.env.NODE_ENV ?? 'development';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: [`.env.${ENV}`, '.env'],
+      validationSchema: envSchema,
       load: [appConfig],
     }),
   ],
@@ -85,12 +87,12 @@ const ENV = process.env.NODE_ENV ?? 'development';
 export class AppModule {}
 ```
 
+- `validationSchema` validates the merged env object before anything else.
 - `load` accepts an array, so you can register several config factories.
 - Each factory's returned keys are merged into the top level of the config.
 - `isGlobal: true` lets every module inject `ConfigService` without importing
   `ConfigModule` again.
-- `envFilePath` must come before `load` conceptually: files are read first, then
-  the factory runs.
+- Files are read first, then validated, then the config factories run.
 
 ## 4. Read the config
 
@@ -211,31 +213,14 @@ Rules:
 - If a variable is optional, give it a default with `??`.
 - If it is required, omit the default and use `getOrThrow()` when reading.
 
-## 7. Optional: validate at startup
+## 7. Validate at startup
 
-Fail on missing variables before the first request:
+This project validates env variables with Zod. The schema lives in
+`src/config/env.validation.ts` and is registered in `ConfigModule.forRoot()`
+with `validationSchema: envSchema`.
 
-```ts
-ConfigModule.forRoot({
-  isGlobal: true,
-  envFilePath: [`.env.${ENV}`, '.env'],
-  load: [appConfig],
-  validate: (config) => {
-    const required = ['POSTGRES_DB', 'POSTGRES_USER', 'POSTGRES_PASSWORD'];
-
-    for (const key of required) {
-      if (!config[key]) {
-        throw new Error(`Missing required environment variable: ${key}`);
-      }
-    }
-
-    return config;
-  },
-}),
-```
-
-For bigger projects use a schema library (`joi`, `zod`) via
-`validationSchema` instead.
+See [env-validation-zod.md](./env-validation-zod.md) for the full setup,
+defaults, failure output, and troubleshooting.
 
 ## 8. Verify the config
 

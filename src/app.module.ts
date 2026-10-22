@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity.js';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig, DatabaseConfig } from './config/app.config.js';
+import { envSchema } from './config/env.validation.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -17,6 +18,7 @@ const ENV = process.env.NODE_ENV ?? 'development';
       // NODE_ENV must be set by the process (see the start:* scripts). The first existing file wins,
       // so environment-specific values override the shared defaults in .env.
       envFilePath: [`.env.${ENV}`, '.env'],
+      validationSchema: envSchema,
       load: [appConfig],
     }),
     UsersModule,
