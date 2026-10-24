@@ -1,0 +1,34 @@
+type: folder
+model: folder
+id: fl_CAwsV6anTJ
+createdAt: 2026-10-24T08:23:43.101588100
+updatedAt: 2026-10-24T08:29:19.341169900
+workspaceId: wk_5pAGjv3BtZ
+folderId: null
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: Meta
+sortPriority: -796600073160.0
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingRequestMessageSize:
+  enabled: false
+  value: 67108864
+settingHttpVersion:
+  enabled: false
+  value: auto

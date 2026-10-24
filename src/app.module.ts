@@ -8,6 +8,8 @@ import { User } from './users/user.entity.js';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig, DatabaseConfig } from './config/app.config.js';
 import { envSchema } from './config/env.validation.js';
+import { TagsModule } from './tags/tags.module.js';
+import { MetaOptionsModule } from './meta-options/meta-options.module.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -36,12 +38,14 @@ const ENV = process.env.NODE_ENV ?? 'development';
           username: database.username,
           password: database.password,
           database: database.name,
-          entities: [User],
+          // entities: [User],
           synchronize: database.synchronize,
           autoLoadEntities: database.autoLoadEntities,
         };
       },
     }),
+    TagsModule,
+    MetaOptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
