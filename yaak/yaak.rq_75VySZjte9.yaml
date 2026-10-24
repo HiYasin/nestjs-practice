@@ -1,0 +1,53 @@
+type: http_request
+model: http_request
+id: rq_75VySZjte9
+createdAt: 2026-10-24T12:18:19.465793300
+updatedAt: 2026-10-24T12:48:55.567320400
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_7cgHUwf6Zm
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "title": "What is nestjs",
+      "postType": "post",
+      "slug": "what-is-nestjs-2",
+      "status": "draft",
+      "content": "test content",
+      "schema": "{\r\n \"@context\": \"https:\/\/schema.org\",\r\n \"@type\": \"Person\"\r\n }",
+      "publishOn": "2026-10-16T07:46:32+0000",
+      "metaOptions": {
+        "metaValue": "{\"sidebarEnabled\": true, \"footerActive\":true}"
+      }
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: Nym9AbGCRx
+method: POST
+name: ''
+sortPriority: -1792350164609.999
+url: ${[ baseUrl ]}/posts
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
