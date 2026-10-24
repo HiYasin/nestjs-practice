@@ -2,7 +2,7 @@ type: folder
 model: folder
 id: fl_7cgHUwf6Zm
 createdAt: 2026-10-24T12:18:15.627121400
-updatedAt: 2026-10-24T12:18:15.627122
+updatedAt: 2026-10-24T13:25:04.384853600
 workspaceId: wk_5pAGjv3BtZ
 folderId: null
 authentication: {}
@@ -10,7 +10,7 @@ authenticationType: null
 description: ''
 headers: []
 name: Posts
-sortPriority: -1792844295621.0
+sortPriority: 2000.0
 settingSendCookies:
   enabled: false
   value: true

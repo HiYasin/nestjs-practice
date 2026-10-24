@@ -35,4 +35,17 @@ export class PostsService {
     const post = this.postRepository.create(createPostDto);
     return await this.postRepository.save(post);
   }
+
+  public async findAll(): Promise<Post[]> {
+
+    // Without eager: true, in entity relation, we would have to specify relations here to populate the metaOptions for each post.
+    // return await this.postRepository.find({
+    //   relations: {
+    //     metaOptions: true, // This will fetch the related metaOptions for each post
+    //   }
+    // });
+
+    // With eager: true, in entity relation, we don't need to specify relations here.
+    return await this.postRepository.find();
+  }
 }

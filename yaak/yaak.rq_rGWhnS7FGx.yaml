@@ -1,0 +1,41 @@
+type: http_request
+model: http_request
+id: rq_rGWhnS7FGx
+createdAt: 2026-10-24T13:25:07.856031700
+updatedAt: 2026-10-24T13:25:16.069296100
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_7cgHUwf6Zm
+authentication: {}
+authenticationType: null
+body:
+  text: ''
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: Nym9AbGCRx
+method: GET
+name: ''
+sortPriority: -1792350164609.998
+url: ${[ baseUrl ]}/posts
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto

@@ -11,4 +11,9 @@ export class PostsController {
   public createPost(@Body() createPostDto: CreatePostDto) {
     return this.postsService.create(createPostDto);
   }
+
+  @Get()
+  public findAllPosts() {
+    return this.postsService.findAll();
+  }
 }
