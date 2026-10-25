@@ -1,0 +1,47 @@
+type: http_request
+model: http_request
+id: rq_L7GKV7ytPT
+createdAt: 2026-10-25T02:58:24.696068100
+updatedAt: 2026-10-25T03:06:18.023803100
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_cHH4EYVYPE
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "name": "php",
+      "slug": "php1",
+      "description": "php description",
+      "featuredImageUrl": null
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: ZjwUuGfUHr
+method: POST
+name: ''
+sortPriority: 0.0
+url: ${[ baseUrl ]}/tags
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
