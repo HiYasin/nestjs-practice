@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import type { Relation } from 'typeorm';
 import { postType } from './enums/postType.enum.js';
 import { postStatus } from './enums/postStatus.enum.js';
 import { MetaOption } from '../meta-options/entities/meta-option.entity.js';
 import { User } from '../users/user.entity.js';
+import { Tag } from '../tags/tag.entity.js';
 
 @Entity()
 export class Post {
@@ -66,8 +67,6 @@ export class Post {
   })
   publishOn?: Date;
 
-  // Work on these in lecture on relationships
-  tags?: string[];
 
   // Unidirectional OneToOne relationship with MetaOption entity
   // @OneToOne(() => MetaOption, {
@@ -87,4 +86,9 @@ export class Post {
     eager: true,
   })
   author: Relation<User>;
+
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags?: Tag[];
+
 }

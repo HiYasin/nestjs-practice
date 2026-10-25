@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tag } from '../tag.entity.js';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateTagDto } from '../dto/create-tag.dto.js';
 
 @Injectable()
@@ -43,5 +43,19 @@ export class TagsService {
         if (!result.affected) {
             throw new NotFoundException(`Tag with id ${id} not found`);
         }
+    }
+
+    public async findMultipleByIds(ids: string[]): Promise<Tag[]> {
+        const tags = await this.tagRepository.find({
+            where: {
+                id: In(ids),
+            },
+        });
+
+        if (!tags) {
+            throw new NotFoundException(`Tags with ids ${ids.join(', ')} not found`);
+        }
+
+        return tags;
     }
 }

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 // import { MetaOption } from '../../meta-options/entities/meta-option.entity.js';
 import { CreatePostDto } from '../dtos/create-post.dto.js';
 import { UsersService } from '../../users/providers/users.service.js';
+import { TagsService } from '../../tags/providers/tags.service.js';
 
 @Injectable()
 export class PostsService {
@@ -16,12 +17,13 @@ export class PostsService {
     // @InjectRepository(MetaOption)
     // private readonly metaOptionRepository: Repository<MetaOption>
 
-    private readonly usersService: UsersService
-  ) {}
+    private readonly usersService: UsersService,
+    private readonly tagsService: TagsService
+  ) { }
 
 
-  public async create(createPostDto: CreatePostDto){
-    
+  public async create(createPostDto: CreatePostDto) {
+
     // Without adding cascade: true in the OneToOne relationship, we would have to create and save the metaOptions separately.
     // const metaOptions = createPostDto.metaOptions ? this.metaOptionRepository.create(createPostDto.metaOptions) : undefined;
     // if(metaOptions){
@@ -39,14 +41,20 @@ export class PostsService {
     // return await this.postRepository.save(post);
 
 
+    // Find the author
     const author = await this.usersService.findOneById(createPostDto.authorId);
-    if(!author){
+    if (!author) {
       throw new Error(`Author with id ${createPostDto.authorId} not found`);
     }
+
+    // Find the tags
+    const tags = createPostDto.tags?.length ? await this.tagsService.findMultipleByIds(createPostDto.tags) : [];
+    
     const post = this.postRepository.create({
-      ...createPostDto,
-      author
-    });
+        ...createPostDto,
+        author,
+        tags
+      });
     return await this.postRepository.save(post);
   }
 

@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_eG8u2ri8Au
 createdAt: 2026-10-24T13:35:02.940284500
-updatedAt: 2026-10-25T01:03:06.393233500
+updatedAt: 2026-10-25T03:51:04.600242300
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_7cgHUwf6Zm
 authentication: {}
@@ -23,12 +23,12 @@ url: ${[ baseUrl ]}/posts
 urlParameters:
 - enabled: true
   name: id
-  value: 71059fb6-9e36-4bc5-a5b6-bada9df56b40
+  value: 80457ab8-b43b-4ada-b30b-39bff1bffec5
   id: k8XCmSxE2d
 - enabled: true
   name: ''
   value: ''
-  id: Rb7QvKadYM
+  id: QpBNiZAQyQ
 settingSendCookies:
   enabled: false
   value: true

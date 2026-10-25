@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_75VySZjte9
 createdAt: 2026-10-24T12:18:19.465793300
-updatedAt: 2026-10-25T01:36:54.161040700
+updatedAt: 2026-10-25T03:42:37.907249600
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_7cgHUwf6Zm
 authentication: {}
@@ -20,7 +20,8 @@ body:
       "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"footerActive\":true}"
       },
-      "authorId": "93668ec9-a325-45c0-8f0f-44210c6e2464"
+      "authorId": "93668ec9-a325-45c0-8f0f-44210c6e2464",
+      "tags": ["b0e7a6a8-35d2-4e3b-ae8a-2dc40ad2f92f", "28b8e88f-acdc-4fbd-9944-9a2431e4e71d"]
     }
 bodyType: application/json
 description: ''
