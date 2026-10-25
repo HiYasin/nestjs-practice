@@ -1,0 +1,48 @@
+type: http_request
+model: http_request
+id: rq_767Ais3bMw
+createdAt: 2026-10-25T14:12:08.449438900
+updatedAt: 2026-10-25T14:12:43.705098300
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_5vqr2T6yGo
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: User By Id
+sortPriority: -1792350164609.999
+url: ${[ baseUrl ]}/users/93668ec9-a325-45c0-8f0f-44210c6e2465
+urlParameters:
+- enabled: false
+  name: limit
+  value: '50'
+  id: HVBwiJ4Kn2
+- enabled: false
+  name: offset
+  value: '2'
+  id: PzjxxghVZE
+- enabled: true
+  name: ''
+  value: ''
+  id: YGWg2mab0T
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
