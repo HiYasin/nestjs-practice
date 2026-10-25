@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { PostsService } from './providers/posts.service.js';
 import { CreatePostDto } from './dtos/create-post.dto.js';
 
@@ -15,5 +15,10 @@ export class PostsController {
   @Get()
   public findAllPosts() {
     return this.postsService.findAll();
+  }
+
+  @Delete()
+  public deletePost(@Query('id') id: string) {
+    return this.postsService.delete(id);
   }
 }

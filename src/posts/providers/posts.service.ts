@@ -48,4 +48,31 @@ export class PostsService {
     // With eager: true, in entity relation, we don't need to specify relations here.
     return await this.postRepository.find();
   }
+
+  async delete(id: string) {
+
+    // Option 01
+    // Even cascade true is set in the OneToOne relationship, we have to delete the metaOptions separately before deleting the post.
+    // Without cascade: true, we would have to delete the metaOptions separately before deleting the post.
+    // const post = await this.postRepository.findOneBy({ id });
+    // if (!post) {
+    //   throw new Error(`Post with id ${id} not found`);
+    // }
+    // await this.metaOptionRepository.delete({ post: { id } });
+    // await this.postRepository.delete(id);
+
+    // Option 02
+    // With remove method of the repository, we can delete the post and its related metaOptions in one go, if cascade: true is set in the OneToOne relationship.
+    // In this case the metaOptions must be populated for the post, otherwise it will not be deleted.
+    // const post = await this.postRepository.findOne({ where: { id }, relations: { metaOptions: true } });
+    // if (!post) {
+    //   throw new Error(`Post with id ${id} not found`);
+    // }
+    // await this.postRepository.remove(post);
+
+
+    // Option 03
+    // With cascade: true and onDelete: 'CASCADE' set in the OneToOne bidirectional relationship, we can delete the post and its related metaOptions in one go, without having to populate the metaOptions for the post.
+    return await this.postRepository.delete(id);
+  }
 }

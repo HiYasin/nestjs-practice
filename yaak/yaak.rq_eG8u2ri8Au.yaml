@@ -1,0 +1,49 @@
+type: http_request
+model: http_request
+id: rq_eG8u2ri8Au
+createdAt: 2026-10-24T13:35:02.940284500
+updatedAt: 2026-10-25T01:03:06.393233500
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_7cgHUwf6Zm
+authentication: {}
+authenticationType: null
+body:
+  text: ''
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: Nym9AbGCRx
+method: DELETE
+name: ''
+sortPriority: -1792350164609.997
+url: ${[ baseUrl ]}/posts
+urlParameters:
+- enabled: true
+  name: id
+  value: 71059fb6-9e36-4bc5-a5b6-bada9df56b40
+  id: k8XCmSxE2d
+- enabled: true
+  name: ''
+  value: ''
+  id: Rb7QvKadYM
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
