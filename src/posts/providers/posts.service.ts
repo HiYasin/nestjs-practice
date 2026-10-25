@@ -4,6 +4,7 @@ import { Post } from '../post.entity.js';
 import { Repository } from 'typeorm';
 // import { MetaOption } from '../../meta-options/entities/meta-option.entity.js';
 import { CreatePostDto } from '../dtos/create-post.dto.js';
+import { UsersService } from '../../users/providers/users.service.js';
 
 @Injectable()
 export class PostsService {
@@ -14,6 +15,8 @@ export class PostsService {
 
     // @InjectRepository(MetaOption)
     // private readonly metaOptionRepository: Repository<MetaOption>
+
+    private readonly usersService: UsersService
   ) {}
 
 
@@ -32,7 +35,18 @@ export class PostsService {
 
 
     // With cascade: true, we can create and save the metaOptions in one go.
-    const post = this.postRepository.create(createPostDto);
+    // const post = this.postRepository.create(createPostDto);
+    // return await this.postRepository.save(post);
+
+
+    const author = await this.usersService.findOneById(createPostDto.authorId);
+    if(!author){
+      throw new Error(`Author with id ${createPostDto.authorId} not found`);
+    }
+    const post = this.postRepository.create({
+      ...createPostDto,
+      author
+    });
     return await this.postRepository.save(post);
   }
 

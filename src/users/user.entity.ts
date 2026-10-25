@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./dtos/create-user.dto.js";
+import { Post } from "../posts/post.entity.js";
 
 @Entity()
 export class User {
@@ -40,4 +41,7 @@ export class User {
         default: Role.USER
     })
     role: Role;
+
+    @OneToMany(()=> Post, post => post.author)
+    posts: Post[];
 }

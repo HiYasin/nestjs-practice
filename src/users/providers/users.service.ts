@@ -36,4 +36,8 @@ export class UsersService {
         // Save it to the database
         return await this.userRepository.save(newUser);
     }
+
+    public async findOneById(id: string): Promise<User | null> {
+        return await this.userRepository.findOne({ where: { id } });
+    }
 }

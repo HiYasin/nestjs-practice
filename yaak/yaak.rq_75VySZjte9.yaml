@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_75VySZjte9
 createdAt: 2026-10-24T12:18:19.465793300
-updatedAt: 2026-10-24T12:48:55.567320400
+updatedAt: 2026-10-25T01:36:54.161040700
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_7cgHUwf6Zm
 authentication: {}
@@ -19,7 +19,8 @@ body:
       "publishOn": "2026-10-16T07:46:32+0000",
       "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"footerActive\":true}"
-      }
+      },
+      "authorId": "93668ec9-a325-45c0-8f0f-44210c6e2464"
     }
 bodyType: application/json
 description: ''
