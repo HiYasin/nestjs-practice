@@ -1,5 +1,6 @@
-import { Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CreateDateColumn } from "typeorm/browser";
+import { Post } from "../posts/post.entity.js";
 
 @Entity()
 export class Tag {
@@ -50,4 +51,9 @@ export class Tag {
 
   @DeleteDateColumn()
   deleteDate: Date;
+
+  @ManyToMany(() => Post, post => post.tags, {
+    onDelete: 'CASCADE',
+  })
+  posts?: Post[];
 }

@@ -38,11 +38,12 @@ export class TagsService {
         return tag;
     }
 
-    public async delete(id: string): Promise<void> {
+    public async delete(id: string) {
         const result = await this.tagRepository.delete({ id }); // or softDelete
         if (!result.affected) {
             throw new NotFoundException(`Tag with id ${id} not found`);
         }
+        return result;
     }
 
     public async findMultipleByIds(ids: string[]): Promise<Tag[]> {
