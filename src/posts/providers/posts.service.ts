@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { CreatePostDto } from '../dtos/create-post.dto.js';
 import { UsersService } from '../../users/providers/users.service.js';
 import { TagsService } from '../../tags/providers/tags.service.js';
+import { PatchPostDto } from '../dtos/patch-post.dto.js';
 
 @Injectable()
 export class PostsService {
@@ -98,5 +99,25 @@ export class PostsService {
     // Option 03
     // With cascade: true and onDelete: 'CASCADE' set in the OneToOne bidirectional relationship, we can delete the post and its related metaOptions in one go, without having to populate the metaOptions for the post.
     return await this.postRepository.delete(id);
+  }
+
+
+  public async update(patchPostDto: PatchPostDto){
+    // Find the post
+    const post = await this.postRepository.findOneBy({ id: patchPostDto.id });
+    if (!post) {
+      throw new Error(`Post with id ${patchPostDto.id} not found`);
+    }
+
+    const { tags, authorId, ...updateData } = patchPostDto;
+
+    // Find the tags
+    post.tags = await this.tagsService.findMultipleByIds(patchPostDto.tags || []);
+
+    // Update the post
+    const updatedPost = this.postRepository.merge(post, updateData);
+
+    // Save the updated post
+    return await this.postRepository.save(updatedPost);
   }
 }
