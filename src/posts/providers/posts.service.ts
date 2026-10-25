@@ -64,6 +64,8 @@ export class PostsService {
     // return await this.postRepository.find({
     //   relations: {
     //     metaOptions: true, // This will fetch the related metaOptions for each post
+    //     tags: true, // This will fetch the related tags for each post
+    //     author: true, // This will fetch the related author for each post
     //   }
     // });
 
