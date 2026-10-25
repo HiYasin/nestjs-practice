@@ -46,6 +46,14 @@ export class TagsService {
         return result;
     }
 
+    public async softDelete(id: string) {
+        const result = await this.tagRepository.softDelete({ id });
+        if (!result.affected) {
+            throw new NotFoundException(`Tag with id ${id} not found`);
+        }
+        return result;
+    }
+
     public async findMultipleByIds(ids: string[]): Promise<Tag[]> {
         const tags = await this.tagRepository.find({
             where: {

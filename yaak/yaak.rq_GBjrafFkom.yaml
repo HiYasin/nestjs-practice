@@ -1,0 +1,36 @@
+type: http_request
+model: http_request
+id: rq_GBjrafFkom
+createdAt: 2026-10-25T12:59:59.728996900
+updatedAt: 2026-10-25T13:00:12.018661600
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_cHH4EYVYPE
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: DELETE
+name: ''
+sortPriority: 3000.001
+url: ${[ baseUrl ]}/tags/soft/b0e7a6a8-35d2-4e3b-ae8a-2dc40ad2f92f
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto

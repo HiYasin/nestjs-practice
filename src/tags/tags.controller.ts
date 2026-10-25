@@ -27,4 +27,9 @@ export class TagsController {
     async delete(@Param('id') id: string) {
         return await this.tagsService.delete(id);
     }
+
+    @Delete('soft/:id')
+    async softDelete(@Param('id') id: string) {
+        return await this.tagsService.softDelete(id);
+    }
 }
