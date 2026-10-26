@@ -82,8 +82,9 @@ export class Post {
   })
   metaOptions?: MetaOption | null;
 
-  @ManyToOne(() => User, user => user.posts,{
+  @ManyToOne(() => User, user => user.posts, {
     eager: true,
+    onDelete: 'CASCADE',
   })
   author: Relation<User>;
 

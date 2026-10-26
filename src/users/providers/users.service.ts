@@ -1,7 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, RequestTimeoutException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user.entity.js';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto.js';
 import { ConfigService } from '@nestjs/config';
 import { UsersCreateManyProvider } from './users-create-many.provider.js';
@@ -111,6 +111,15 @@ export class UsersService {
 
     public async createManyUsers(createManyUsersDto: CreateManyUsersDto) {
         return await this.usersCreateManyProvider.createManyUsers(createManyUsersDto);
+    }
+
+    public async deleteManyUsers(ids: string[]) {
+        const result = await this.userRepository.delete({ id: In(ids) });
+
+        return {
+            requested: ids.length,
+            deleted: result.affected ?? 0,
+        };
     }
 
 }

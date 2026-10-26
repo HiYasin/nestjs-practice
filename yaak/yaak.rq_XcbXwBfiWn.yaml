@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_XcbXwBfiWn
 createdAt: 2026-10-26T03:50:59.359930600
-updatedAt: 2026-10-26T04:08:36.429547600
+updatedAt: 2026-10-26T04:17:42.335323300
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_5vqr2T6yGo
 authentication: {}
@@ -14,13 +14,13 @@ body:
         {
           "firstName": "Faisal",
           "lastName": "Yasin",
-          "email": "faisal6@example.com",
+          "email": "faisal1@example.com",
           "password": "Password123!",
         },
         {
           "firstName": "Faisal",
           "lastName": "Yasin",
-          "email": "faisal7@example.com",
+          "email": "faisal3@example.com",
           "password": "Password123!",
         }
       ]
@@ -33,7 +33,7 @@ headers:
   value: application/json
   id: xgGS3csZhd
 method: POST
-name: Users Copy
+name: Create Bulk Users
 sortPriority: -1792350164609.998
 url: ${[ baseUrl ]}/users/create-many
 urlParameters: []

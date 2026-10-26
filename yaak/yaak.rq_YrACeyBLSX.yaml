@@ -1,0 +1,49 @@
+type: http_request
+model: http_request
+id: rq_YrACeyBLSX
+createdAt: 2026-10-26T04:15:02.107608700
+updatedAt: 2026-10-26T04:17:20.081959500
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_5vqr2T6yGo
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "ids": [
+        "ca86afd9-beb4-40db-8c57-5dfcb5172abd",
+        "f24dc2e5-6dce-40de-99fb-ebd3b93e0c5d",
+        "93668ec9-a325-45c0-8f0f-44210c6e2464",
+        "05d8ab1b-0634-4174-85b4-6a1715447801"
+      ]
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: xgGS3csZhd
+method: DELETE
+name: Delete Bulk Users
+sortPriority: -1792350164609.997
+url: ${[ baseUrl ]}/users
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto

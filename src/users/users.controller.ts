@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UsersService } from './providers/users.service.js';
 import { CreateUserDto } from './dtos/create-user.dto.js';
 import { CreateManyUsersDto } from './dtos/create-many-user.dto.js';
+import { DeleteManyUsersDto } from './dtos/delete-many-users.dto.js';
 
 @Controller('users')
 export class UsersController {
@@ -16,6 +17,11 @@ export class UsersController {
   // public async createManyUsers(@Body() createUsersDto: CreateUserDto[]) { // Array of a DTO doesn't provide validation. It gives only type-safety.
   public async createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUsers(createManyUsersDto);
+  }
+
+  @Delete()
+  public async deleteManyUsers(@Body() deleteManyUsersDto: DeleteManyUsersDto) {
+    return this.usersService.deleteManyUsers(deleteManyUsersDto.ids);
   }
 
   @Get()
