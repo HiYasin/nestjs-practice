@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, RequestTimeoutException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, RequestTimeoutException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user.entity.js';
 import { Repository } from 'typeorm';
@@ -70,7 +70,7 @@ export class UsersService {
 
 
         // With proper exception handling
-        
+
         let user: User | null;
 
         try {
@@ -88,5 +88,21 @@ export class UsersService {
         }
 
         return user;
+    }
+
+    public async customException() {
+        throw new HttpException(
+            {
+                status: HttpStatus.BAD_REQUEST,
+                error: 'This is a custom exception message',
+                fileName: 'app.service.ts',
+                lineNumber: 10,
+            },
+            HttpStatus.BAD_REQUEST,
+            {
+                cause: new Error('This is the cause of the exception'),
+                description: 'This is a custom description for the exception',
+            }
+        )
     }
 }

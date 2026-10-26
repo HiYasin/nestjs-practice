@@ -16,6 +16,11 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get('custom-exception')
+  public async getCustomException() {
+    return this.usersService.customException();
+  }
+
   @Get(':id')
   public async findOne(@Param('id') id: string) {
     return this.usersService.findOneById(id);

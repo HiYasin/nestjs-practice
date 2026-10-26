@@ -1,0 +1,36 @@
+type: http_request
+model: http_request
+id: rq_FyvgUtoKEA
+createdAt: 2026-10-25T14:17:58.946539800
+updatedAt: 2026-10-25T14:22:54.960043700
+workspaceId: wk_5pAGjv3BtZ
+folderId: null
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: ''
+sortPriority: 4000.0
+url: ${[ baseUrl ]}/users/custom-exception
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto
