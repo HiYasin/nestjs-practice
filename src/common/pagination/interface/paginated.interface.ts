@@ -5,5 +5,9 @@ export interface IPaginated<T> {
         totalItems: number;
         currentPage: number;
         totalPages: number;
-    }
+        firstPage: number;
+        lastPage: number;
+        hasNextPage: boolean;
+        hasPreviousPage: boolean;
+    };
 }

@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_zZc64RWL5m
 createdAt: 2026-10-27T11:33:10.653925900
-updatedAt: 2026-10-27T14:35:07.605465
+updatedAt: 2026-10-27T17:53:56.395102500
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_7cgHUwf6Zm
 authentication: {}
@@ -23,13 +23,13 @@ url: ${[ baseUrl ]}/posts/017504f5-521e-427f-a289-5edb250fe39c
 urlParameters:
 - enabled: true
   name: page
-  value: '2'
+  value: '1'
   id: Nu6mX2P2A6
 - enabled: true
   name: limit
   value: '5'
   id: rMgaibAM7N
-- enabled: true
+- enabled: false
   name: startDate
   value: 2026-11-01T00:00:00.000Z
   id: Z0vgmZC48y
@@ -40,7 +40,7 @@ urlParameters:
 - enabled: true
   name: ''
   value: ''
-  id: sjFUHnwnRV
+  id: UN2TAerD6W
 settingSendCookies:
   enabled: false
   value: true

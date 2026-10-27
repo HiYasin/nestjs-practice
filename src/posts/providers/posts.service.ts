@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from '../post.entity.js';
-import { Between, Repository } from 'typeorm';
+import { Between, LessThanOrEqual, MoreThanOrEqual, Repository } from 'typeorm';
 // import { MetaOption } from '../../meta-options/entities/meta-option.entity.js';
 import { CreatePostDto } from '../dtos/create-post.dto.js';
 import { UsersService } from '../../users/providers/users.service.js';
 import { TagsService } from '../../tags/providers/tags.service.js';
 import { PatchPostDto } from '../dtos/patch-post.dto.js';
+import { GetPostsDto } from '../dtos/get-posts.dto.js';
 import { PaginationProvider } from '../../common/pagination/provider/pagination.provider.js';
 import { IPaginated } from '../../common/pagination/interface/paginated.interface.js';
 
@@ -124,7 +125,7 @@ export class PostsService {
     return await this.postRepository.save(updatedPost);
   }
 
-  public async findAllByUser(postQuery: any, userId: string): Promise<IPaginated<Post>> {
+  public async findAllByUser(postQuery: GetPostsDto, userId: string): Promise<IPaginated<Post>> {
     // const { limit, page, startDate, endDate } = postQuery;
     // const skip = (page - 1) * limit;
     // const posts = await this.postRepository.find({
@@ -145,7 +146,23 @@ export class PostsService {
     //   }
     // }
 
-    const posts = await this.paginationProvider.paginateQuery(postQuery, this.postRepository);
-    return posts;
+    const { startDate, endDate } = postQuery;
+
+    let publishOn;
+    if (startDate && endDate) {
+      publishOn = Between(new Date(startDate), new Date(endDate));
+    } else if (startDate) {
+      publishOn = MoreThanOrEqual(new Date(startDate));
+    } else if (endDate) {
+      publishOn = LessThanOrEqual(new Date(endDate));
+    }
+
+    return this.paginationProvider.paginateQuery(postQuery, this.postRepository, {
+      where: {
+        author: { id: userId },
+        publishOn,
+      },
+      order: { publishOn: 'DESC' },
+    });
   }
 }
