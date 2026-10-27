@@ -10,6 +10,7 @@ import { appConfig, DatabaseConfig } from './config/app.config.js';
 import { envSchema } from './config/env.validation.js';
 import { TagsModule } from './tags/tags.module.js';
 import { MetaOptionsModule } from './meta-options/meta-options.module.js';
+import { PaginationModule } from './common/pagination/pagination.module.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -46,6 +47,7 @@ const ENV = process.env.NODE_ENV ?? 'development';
     }),
     TagsModule,
     MetaOptionsModule,
+    PaginationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

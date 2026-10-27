@@ -7,6 +7,8 @@ import { CreatePostDto } from '../dtos/create-post.dto.js';
 import { UsersService } from '../../users/providers/users.service.js';
 import { TagsService } from '../../tags/providers/tags.service.js';
 import { PatchPostDto } from '../dtos/patch-post.dto.js';
+import { PaginationProvider } from '../../common/pagination/provider/pagination.provider.js';
+import { IPaginated } from '../../common/pagination/interface/paginated.interface.js';
 
 @Injectable()
 export class PostsService {
@@ -19,7 +21,8 @@ export class PostsService {
     // private readonly metaOptionRepository: Repository<MetaOption>
 
     private readonly usersService: UsersService,
-    private readonly tagsService: TagsService
+    private readonly tagsService: TagsService,
+    private readonly paginationProvider: PaginationProvider
   ) { }
 
 
@@ -121,25 +124,28 @@ export class PostsService {
     return await this.postRepository.save(updatedPost);
   }
 
-  public async findAllByUser(postQuery: any, userId: string) {
-    const { limit, page, startDate, endDate } = postQuery;
-    const skip = (page - 1) * limit;
-    const posts = await this.postRepository.find({
-      where: { 
-        author: { id: userId },
-        publishOn: startDate && endDate ? Between(new Date(startDate), new Date(endDate)) : undefined
-      },
-      skip,
-      take: limit,
-    });
+  public async findAllByUser(postQuery: any, userId: string): Promise<IPaginated<Post>> {
+    // const { limit, page, startDate, endDate } = postQuery;
+    // const skip = (page - 1) * limit;
+    // const posts = await this.postRepository.find({
+    //   where: { 
+    //     author: { id: userId },
+    //     publishOn: startDate && endDate ? Between(new Date(startDate), new Date(endDate)) : undefined
+    //   },
+    //   skip,
+    //   take: limit,
+    // });
 
-    return {
-      posts,
-      meta: {
-        page,
-        limit,
-        total: posts.length
-      }
-    }
+    // return {
+    //   posts,
+    //   meta: {
+    //     page,
+    //     limit,
+    //     total: posts.length
+    //   }
+    // }
+
+    const posts = await this.paginationProvider.paginateQuery(postQuery, this.postRepository);
+    return posts;
   }
 }
