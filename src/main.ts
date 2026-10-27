@@ -9,7 +9,10 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true, // Trim the additional property
       forbidNonWhitelisted: true, // Forbid the request directly
-      transform: true // Convert the object into DTO instance
+      transform: true, // Convert the object into DTO instance
+      transformOptions :{
+        enableImplicitConversion: true, // Using enableImplicitConversion we don't need to use Type conversion explicitly in each DTO. Ex- Pagination-query dto
+      }
     })
   )
 

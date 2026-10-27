@@ -1,0 +1,61 @@
+type: http_request
+model: http_request
+id: rq_zZc64RWL5m
+createdAt: 2026-10-27T11:33:10.653925900
+updatedAt: 2026-10-27T11:48:35.249383200
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_7cgHUwf6Zm
+authentication: {}
+authenticationType: null
+body:
+  text: ''
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: Nym9AbGCRx
+method: GET
+name: ''
+sortPriority: -1792350164609.997
+url: ${[ baseUrl ]}/posts/017504f5-521e-427f-a289-5edb250fe39c
+urlParameters:
+- enabled: false
+  name: page
+  value: '2'
+  id: Nu6mX2P2A6
+- enabled: false
+  name: limit
+  value: '1'
+  id: rMgaibAM7N
+- enabled: true
+  name: startDate
+  value: 2026-11-01T00:00:00.000Z
+  id: Z0vgmZC48y
+- enabled: true
+  name: endDate
+  value: 2026-12-31T00:00:00.000Z
+  id: 3TvGBx2V6p
+- enabled: true
+  name: ''
+  value: ''
+  id: WjDMHy0aP3
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto

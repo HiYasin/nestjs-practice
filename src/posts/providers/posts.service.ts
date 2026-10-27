@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from '../post.entity.js';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 // import { MetaOption } from '../../meta-options/entities/meta-option.entity.js';
 import { CreatePostDto } from '../dtos/create-post.dto.js';
 import { UsersService } from '../../users/providers/users.service.js';
@@ -119,5 +119,27 @@ export class PostsService {
 
     // Save the updated post
     return await this.postRepository.save(updatedPost);
+  }
+
+  public async findAllByUser(postQuery: any, userId: string) {
+    const { limit, page, startDate, endDate } = postQuery;
+    const skip = (page - 1) * limit;
+    const posts = await this.postRepository.find({
+      where: { 
+        author: { id: userId },
+        publishOn: startDate && endDate ? Between(new Date(startDate), new Date(endDate)) : undefined
+      },
+      skip,
+      take: limit,
+    });
+
+    return {
+      posts,
+      meta: {
+        page,
+        limit,
+        total: posts.length
+      }
+    }
   }
 }

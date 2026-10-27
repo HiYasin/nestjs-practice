@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { PostsService } from './providers/posts.service.js';
 import { CreatePostDto } from './dtos/create-post.dto.js';
 import { PatchPostDto } from './dtos/patch-post.dto.js';
+import { GetPostsDto } from './dtos/get-posts.dto.js';
 
 @Controller('posts')
 export class PostsController {
@@ -26,5 +27,13 @@ export class PostsController {
   @Patch()
   public patchPost(@Body() patchPostDto: PatchPostDto) {
     return this.postsService.update(patchPostDto);
+  }
+
+  @Get('/:userId')
+  public getPosts(
+    @Param('userId') userId: string,
+    @Query() postQuery: GetPostsDto,
+  ) {
+    return this.postsService.findAllByUser(postQuery, userId);
   }
 }

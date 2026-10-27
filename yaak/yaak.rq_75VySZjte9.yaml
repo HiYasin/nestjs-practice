@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_75VySZjte9
 createdAt: 2026-10-24T12:18:19.465793300
-updatedAt: 2026-10-25T03:42:37.907249600
+updatedAt: 2026-10-27T11:44:26.647241600
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_7cgHUwf6Zm
 authentication: {}
@@ -10,17 +10,17 @@ authenticationType: null
 body:
   text: |-
     {
-      "title": "What is nestjs",
+      "title": "What is nestjs-9",
       "postType": "post",
-      "slug": "what-is-nestjs-2",
+      "slug": "what-is-nestjs-9",
       "status": "draft",
       "content": "test content",
       "schema": "{\r\n \"@context\": \"https:\/\/schema.org\",\r\n \"@type\": \"Person\"\r\n }",
-      "publishOn": "2026-10-16T07:46:32+0000",
+      "publishOn": "2026-11-03T00:00:00.000Z",
       "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"footerActive\":true}"
       },
-      "authorId": "93668ec9-a325-45c0-8f0f-44210c6e2464",
+      "authorId": "017504f5-521e-427f-a289-5edb250fe39c",
       "tags": ["b0e7a6a8-35d2-4e3b-ae8a-2dc40ad2f92f", "28b8e88f-acdc-4fbd-9944-9a2431e4e71d"]
     }
 bodyType: application/json
