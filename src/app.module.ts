@@ -11,6 +11,7 @@ import { envSchema } from './config/env.validation.js';
 import { TagsModule } from './tags/tags.module.js';
 import { MetaOptionsModule } from './meta-options/meta-options.module.js';
 import { PaginationModule } from './common/pagination/pagination.module.js';
+import { AuthModule } from './auth/auth.module.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -48,6 +49,7 @@ const ENV = process.env.NODE_ENV ?? 'development';
     TagsModule,
     MetaOptionsModule,
     PaginationModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
