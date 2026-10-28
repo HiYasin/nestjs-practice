@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { UsersCreateManyProvider } from './users-create-many.provider.js';
 import { CreateManyUsersDto } from '../dtos/create-many-user.dto.js';
 import { CreateUserProvider } from './create-user.provider.js';
+import { FindUserByEmailProvider } from './find-user-by-email.provider.js';
 
 
 @Injectable()
@@ -18,6 +19,7 @@ export class UsersService {
         private readonly configService: ConfigService,
         private readonly usersCreateManyProvider: UsersCreateManyProvider,
         private readonly createUserProvider: CreateUserProvider,
+        private readonly findUserByEmailProvider: FindUserByEmailProvider,
     ) { }
 
     public async findAll(): Promise<User[]> {
@@ -70,6 +72,11 @@ export class UsersService {
         // return newUser;
 
         return await this.createUserProvider.createUser(createUserDto);
+    }
+
+    
+    public async findOneByEmail(email: string): Promise<User | null> {
+        return await this.findUserByEmailProvider.findUserByEmail(email);
     }
 
     public async findOneById(id: string): Promise<User | null> {

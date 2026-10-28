@@ -1,0 +1,45 @@
+type: http_request
+model: http_request
+id: rq_ifEKq822tr
+createdAt: 2026-10-28T18:06:52.864490500
+updatedAt: 2026-10-28T18:08:30.486793400
+workspaceId: wk_5pAGjv3BtZ
+folderId: fl_5vqr2T6yGo
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "email": "faisal12@example.com",
+      "password": "Password123!",
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: xgGS3csZhd
+method: POST
+name: Users Signin
+sortPriority: -1792350164609.998
+url: ${[ baseUrl ]}/auth/sign-in
+urlParameters: []
+settingSendCookies:
+  enabled: false
+  value: true
+settingStoreCookies:
+  enabled: false
+  value: true
+settingValidateCertificates:
+  enabled: false
+  value: true
+settingFollowRedirects:
+  enabled: false
+  value: true
+settingRequestTimeout:
+  enabled: false
+  value: 0
+settingHttpVersion:
+  enabled: false
+  value: auto

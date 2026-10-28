@@ -4,6 +4,7 @@ import { AuthController } from './auth.controller.js';
 import { HashingProvider } from './providers/hashing.provider.js';
 import { BycryptProvider } from './providers/bycrypt.provider.js';
 import { UsersModule } from '../users/users.module.js';
+import { SignInProvider } from './providers/sign-in.provider.js';
 
 @Module({
   controllers: [AuthController],
@@ -16,7 +17,8 @@ import { UsersModule } from '../users/users.module.js';
     {
       provide: HashingProvider, // The abstract class is used as a token to identify the provider
       useClass: BycryptProvider, // The concrete implementation of the abstract class is specified using the useClass property
-    }
+    },
+    SignInProvider
   ],
 
   imports: [forwardRef(() => UsersModule)], // forwardRef is used to resolve circular dependency
