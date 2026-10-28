@@ -6,6 +6,7 @@ import { CreateUserDto } from '../dtos/create-user.dto.js';
 import { ConfigService } from '@nestjs/config';
 import { UsersCreateManyProvider } from './users-create-many.provider.js';
 import { CreateManyUsersDto } from '../dtos/create-many-user.dto.js';
+import { CreateUserProvider } from './create-user.provider.js';
 
 
 @Injectable()
@@ -16,6 +17,7 @@ export class UsersService {
         private readonly userRepository: Repository<User>,
         private readonly configService: ConfigService,
         private readonly usersCreateManyProvider: UsersCreateManyProvider,
+        private readonly createUserProvider: CreateUserProvider,
     ) { }
 
     public async findAll(): Promise<User[]> {
@@ -41,31 +43,33 @@ export class UsersService {
 
         // With proper exception handling
 
-        let isExistingUser: User | null;
-        try {
-            isExistingUser = await this.userRepository.findOne({ where: { email: createUserDto.email } });
-        } catch (error) {
-            throw new RequestTimeoutException('Unable to process the request at this time. Please try again later.', {
-                description: 'Database connection timeout. Please check your database connection and try again.'
-            });
-        }
+        // let isExistingUser: User | null;
+        // try {
+        //     isExistingUser = await this.userRepository.findOne({ where: { email: createUserDto.email } });
+        // } catch (error) {
+        //     throw new RequestTimeoutException('Unable to process the request at this time. Please try again later.', {
+        //         description: 'Database connection timeout. Please check your database connection and try again.'
+        //     });
+        // }
 
-        if (isExistingUser) {
-            throw new BadRequestException('User already exists with this email', {
-                description: 'A user with the provided email already exists. Please use a different email or log in.',
-            });
-        }
+        // if (isExistingUser) {
+        //     throw new BadRequestException('User already exists with this email', {
+        //         description: 'A user with the provided email already exists. Please use a different email or log in.',
+        //     });
+        // }
 
-        let newUser = this.userRepository.create(createUserDto);
+        // let newUser = this.userRepository.create(createUserDto);
 
-        try {
-            newUser = await this.userRepository.save(newUser);
-        } catch (error) {
-            throw new RequestTimeoutException('Unable to process the request at this time. Please try again later.', {
-                description: 'Database connection timeout. Please check your database connection and try again.'
-            });
-        }
-        return newUser;
+        // try {
+        //     newUser = await this.userRepository.save(newUser);
+        // } catch (error) {
+        //     throw new RequestTimeoutException('Unable to process the request at this time. Please try again later.', {
+        //         description: 'Database connection timeout. Please check your database connection and try again.'
+        //     });
+        // }
+        // return newUser;
+
+        return await this.createUserProvider.createUser(createUserDto);
     }
 
     public async findOneById(id: string): Promise<User | null> {
