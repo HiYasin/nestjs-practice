@@ -12,6 +12,7 @@ import { TagsModule } from './tags/tags.module.js';
 import { MetaOptionsModule } from './meta-options/meta-options.module.js';
 import { PaginationModule } from './common/pagination/pagination.module.js';
 import { AuthModule } from './auth/auth.module.js';
+// import { APP_GUARD } from '@nestjs/core';
 // import { AccessTokenGuard } from './auth/guards/access-token.guard.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
@@ -55,9 +56,8 @@ const ENV = process.env.NODE_ENV ?? 'development';
   controllers: [AppController],
   providers: [
     AppService,
-    // To enable any guard globally, the guard must be provided in the AppModule. This is done by adding the guard to the providers array and using the APP_GUARD token. This will make the guard available for all routes in the application.
-    // {
-    //   provide: 'APP_GUARD',
+    // To enable any guard globally, the guard must be provided in the AppModule. This is done by adding the guard to the providers array and using the APP_GUARD token. This will make the guard available for all routes in the application. In that case all the module will be protected by the guard. If any routes require to be public, the @Public() decorator can be used to mark those routes as public.
+    //   provide: APP_GUARD,
     //   useClass: AccessTokenGuard,
     // }
   ],
