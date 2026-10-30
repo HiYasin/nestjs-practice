@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './providers/users.service.js';
 import { CreateUserDto } from './dtos/create-user.dto.js';
 import { CreateManyUsersDto } from './dtos/create-many-user.dto.js';
 import { DeleteManyUsersDto } from './dtos/delete-many-users.dto.js';
+import { AccessTokenGuard } from '../auth/guards/access-token.guard.js';
 
 @Controller('users')
+// @UseGuards(AccessTokenGuard) // Apply the guard to all routes in this controller
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
@@ -14,6 +16,7 @@ export class UsersController {
   }
 
   @Post('create-many')
+  @UseGuards(AccessTokenGuard)
   // public async createManyUsers(@Body() createUsersDto: CreateUserDto[]) { // Array of a DTO doesn't provide validation. It gives only type-safety.
   public async createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUsers(createManyUsersDto);
