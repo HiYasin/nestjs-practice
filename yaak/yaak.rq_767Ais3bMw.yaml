@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_767Ais3bMw
 createdAt: 2026-10-25T14:12:08.449438900
-updatedAt: 2026-10-25T14:12:43.705098300
+updatedAt: 2026-10-30T04:04:00.755487200
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_5vqr2T6yGo
 authentication: {}
@@ -14,7 +14,7 @@ headers: []
 method: GET
 name: User By Id
 sortPriority: -1792350164609.999
-url: ${[ baseUrl ]}/users/93668ec9-a325-45c0-8f0f-44210c6e2465
+url: ${[ baseUrl ]}/users/9429a33b-3ec4-43de-a569-f58981095603
 urlParameters:
 - enabled: false
   name: limit

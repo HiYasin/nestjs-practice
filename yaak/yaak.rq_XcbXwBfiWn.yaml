@@ -2,11 +2,13 @@ type: http_request
 model: http_request
 id: rq_XcbXwBfiWn
 createdAt: 2026-10-26T03:50:59.359930600
-updatedAt: 2026-10-26T04:17:42.335323300
+updatedAt: 2026-10-30T04:05:20.889814700
 workspaceId: wk_5pAGjv3BtZ
 folderId: fl_5vqr2T6yGo
-authentication: {}
-authenticationType: null
+authentication:
+  disabled: true
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NDI5YTMzYi0zZWM0LTQzZGUtYTU2OS1mNTg5ODEwOTU2MDMiLCJlbWFpbCI6ImZhaXNhbDFAZXhhbXBsZS5jb20iLCJpYXQiOjE3OTMzMzMwNTQsImV4cCI6MTc5MzMzNjY1NCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.5kHRYDwU2Jxjv3U_gwTv_tM4a3td2R4DF6dMVEcAAqA
+authenticationType: bearer
 body:
   text: |-
     {
@@ -14,13 +16,13 @@ body:
         {
           "firstName": "Faisal",
           "lastName": "Yasin",
-          "email": "faisal1@example.com",
+          "email": "faisal4@example.com",
           "password": "Password123!",
         },
         {
           "firstName": "Faisal",
           "lastName": "Yasin",
-          "email": "faisal3@example.com",
+          "email": "faisal5@example.com",
           "password": "Password123!",
         }
       ]
@@ -32,6 +34,14 @@ headers:
   name: Content-Type
   value: application/json
   id: xgGS3csZhd
+- enabled: false
+  name: Authorization
+  value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NDI5YTMzYi0zZWM0LTQzZGUtYTU2OS1mNTg5ODEwOTU2MDMiLCJlbWFpbCI6ImZhaXNhbDFAZXhhbXBsZS5jb20iLCJpYXQiOjE3OTMzMzMwNTQsImV4cCI6MTc5MzMzNjY1NCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.5kHRYDwU2Jxjv3U_gwTv_tM4a3td2R4DF6dMVEcAAqA
+  id: Dg0AyTSwpG
+- enabled: true
+  name: ''
+  value: ''
+  id: hzw8rBt9pv
 method: POST
 name: Create Bulk Users
 sortPriority: -1792350164609.998
