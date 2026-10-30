@@ -4,7 +4,7 @@ import { AppService } from './app.service.js';
 import { UsersModule } from './users/users.module.js';
 import { PostsModule } from './posts/posts.module.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/user.entity.js';
+// import { User } from './users/user.entity.js';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig, DatabaseConfig } from './config/app.config.js';
 import { envSchema } from './config/env.validation.js';
@@ -12,6 +12,7 @@ import { TagsModule } from './tags/tags.module.js';
 import { MetaOptionsModule } from './meta-options/meta-options.module.js';
 import { PaginationModule } from './common/pagination/pagination.module.js';
 import { AuthModule } from './auth/auth.module.js';
+// import { AccessTokenGuard } from './auth/guards/access-token.guard.js';
 
 const ENV = process.env.NODE_ENV ?? 'development';
 
@@ -52,6 +53,13 @@ const ENV = process.env.NODE_ENV ?? 'development';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // To enable any guard globally, the guard must be provided in the AppModule. This is done by adding the guard to the providers array and using the APP_GUARD token. This will make the guard available for all routes in the application.
+    // {
+    //   provide: 'APP_GUARD',
+    //   useClass: AccessTokenGuard,
+    // }
+  ],
 })
 export class AppModule {}
