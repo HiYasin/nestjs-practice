@@ -1,6 +1,9 @@
 import { BadRequestException, forwardRef, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../../users/providers/users.service.js';
 import { HashingProvider } from './hashing.provider.js';
+import { JwtService } from '@nestjs/jwt';
+import type { ConfigType } from '@nestjs/config';
+import jwtConfig from '../config/jwt.config.js';
 
 @Injectable()
 export class SignInProvider {
@@ -9,7 +12,10 @@ export class SignInProvider {
         @Inject(forwardRef(() => UsersService))
         private readonly usersService: UsersService,
 
-        private readonly hashingProvider: HashingProvider
+        private readonly hashingProvider: HashingProvider,
+        private readonly jwtService: JwtService,
+        @Inject(jwtConfig.KEY)
+        private readonly jwtConfiguration: ConfigType<typeof jwtConfig>
     ) {}
 
     public async signIn(signInDto: any) {
@@ -28,9 +34,20 @@ export class SignInProvider {
             });
         }
 
+        const accessToken = await this.jwtService.signAsync({
+            sub: user.id,
+            email: user.email,
+        },{
+            secret: this.jwtConfiguration.secret,
+            audience: this.jwtConfiguration.audience,
+            issuer: this.jwtConfiguration.issuer,
+            expiresIn: this.jwtConfiguration.accessTokenTtl,
+        });
+
         return {
             message: 'Sign in successful',
-            user
+            user,
+            accessToken,
         };
     }
 }

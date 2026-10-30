@@ -5,6 +5,9 @@ import { HashingProvider } from './providers/hashing.provider.js';
 import { BycryptProvider } from './providers/bycrypt.provider.js';
 import { UsersModule } from '../users/users.module.js';
 import { SignInProvider } from './providers/sign-in.provider.js';
+import { ConfigModule } from '@nestjs/config';
+import jwtConfig from './config/jwt.config.js';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   controllers: [AuthController],
@@ -21,7 +24,12 @@ import { SignInProvider } from './providers/sign-in.provider.js';
     SignInProvider
   ],
 
-  imports: [forwardRef(() => UsersModule)], // forwardRef is used to resolve circular dependency
+  imports: [
+    forwardRef(() => UsersModule),
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()
+    ), // Registering the JwtModule with the configuration from jwt.config.ts
+  ], // forwardRef is used to resolve circular dependency
   exports: [AuthService, HashingProvider], // Exporting the AuthService and HashingProvider so that they can be used in other modules
 })
 export class AuthModule {}
